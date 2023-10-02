@@ -1,4 +1,5 @@
-import "./globals.scss";
+import { defaultLocale } from "@/middleware";
+import "../globals.scss";
 import { Cormorant_Garamond } from "next/font/google";
 
 const defaultFont = Cormorant_Garamond({
@@ -11,10 +12,13 @@ export const metadata = {
   description: "Generated description"
 };
 
-export default function RootLayout({ children }) {
+function RootLayout({ children, params: { lang } }) {
   return (
-    <html lang="en">
+    <html lang={lang ?? defaultLocale}>
+      <head />
       <body className={defaultFont.className}>{children}</body>
     </html>
   );
 }
+
+export default RootLayout;
